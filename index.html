@@ -1,60 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#07131f" />
-  <title>Rocket Dodge - Arcade</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GLOWMUSHROOM - Your ultimate destination for casual games">
+    <meta property="og:title" content="GLOWMUSHROOM">
+    <meta property="og:description" content="Discover and play amazing games">
+    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect fill='%231a1a1a' width='1200' height='630'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='72' fill='%2300ff88' font-family='Arial'%3EGLOWMUSHROOM%3C/text%3E%3C/svg%3E">
+    <title>GLOWMUSHROOM - Game Hub</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2300ff88'/%3E%3Ccircle cx='50' cy='50' r='35' fill='%231a1a1a'/%3E%3Ccircle cx='30' cy='40' r='8' fill='%2300ff88'/%3E%3Ccircle cx='70' cy='40' r='8' fill='%2300ff88'/%3E%3Cpath d='M 35 65 Q 50 75 65 65' stroke='%2300ff88' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main id="game-root">
-    <header class="masthead">
-      <p class="eyebrow"><span class="signal-dot"></span> Orbit district // Sector 07</p>
-      <h1>Rocket <em>Dodge</em></h1>
-      <p class="deck">Thread the asteroid belts. Keep your engines hot.</p>
-    </header>
-
-    <section class="game-panel" aria-label="Rocket Dodge arcade game">
-      <div class="panel-topline">
-        <span class="status-label"><span class="status-light"></span> Flight system ready</span>
-        <span class="panel-code">RD-07</span>
-      </div>
-      <div class="canvas-wrap">
-        <canvas id="gameCanvas" width="480" height="640" aria-label="Rocket Dodge game"></canvas>
-        <div id="overlay" class="overlay">
-          <div id="startScreen" class="screen">
-            <p class="screen-kicker">Pilot briefing</p>
-            <h2>Find the clear sky.</h2>
-            <p>Tap, press Space, or use Up to thrust. Dodge the asteroid belts and stay airborne.</p>
-            <button id="startBtn" class="primary" type="button">Launch <span>→</span></button>
-            <p class="hint">Keyboard: ↑ / W / Space &nbsp;·&nbsp; Mobile: hold the thrust button</p>
-          </div>
-          <div id="gameOverScreen" class="screen hidden">
-            <p class="screen-kicker">Signal lost</p>
-            <h2>Flight ended.</h2>
-            <p id="finalScore">Score: 0</p>
-            <p id="bestScore">Best: 0</p>
-            <button id="restartBtn" class="primary" type="button">Fly again <span>↗</span></button>
-          </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-icon">🍄</span>
+                <span class="logo-text">GLOWMUSHROOM</span>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#games" class="nav-link">Games</a></li>
+                <li><a href="#categories" class="nav-link">Categories</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
+            </ul>
         </div>
-      </div>
-      <div class="game-caption"><span>● Live telemetry</span><span>Best run: <strong id="highScore">0</strong></span></div>
-    </section>
+    </nav>
 
-    <div class="controls" aria-label="Game controls">
-      <button id="btnUp" class="control-btn" type="button" aria-label="Thrust rocket">▲ <span>THRUST</span></button>
-      <button id="btnRestart" class="control-btn small" type="button" aria-label="Restart game">↻</button>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">GLOWMUSHROOM</h1>
+                <p class="hero-tagline">Your Ultimate Game Hub – Play, Explore, Enjoy</p>
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-bar" 
+                        placeholder="Search games..."
+                        aria-label="Search games"
+                    >
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="filter-section" id="categories">
+            <div class="container">
+                <h2>Filter by Category</h2>
+                <div class="category-chips">
+                    <button class="chip active" data-category="all">All Games</button>
+                    <button class="chip" data-category="action">Action</button>
+                    <button class="chip" data-category="puzzle">Puzzle</button>
+                    <button class="chip" data-category="racing">Racing</button>
+                    <button class="chip" data-category="arcade">Arcade</button>
+                    <button class="chip" data-category="sports">Sports</button>
+                    <button class="chip" data-category="multiplayer">Multiplayer</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Grid -->
+        <section class="games-section" id="games">
+            <div class="container">
+                <h2>Featured Games</h2>
+                <div class="loading-skeleton" id="loadingSkeleton">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+                <div class="games-grid" id="gamesGrid">
+                    <!-- Games will be inserted here by JavaScript -->
+                </div>
+                <div class="no-results" id="noResults" style="display: none;">
+                    <p>No games found. Try adjusting your filters or search.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <h2>About & Contact</h2>
+                <p>GLOWMUSHROOM is your go-to platform for casual gaming entertainment. Discover and play games from various categories.</p>
+                <p>Have questions or suggestions? Get in touch with us!</p>
+                <div class="contact-links">
+                    <a href="mailto:contact@glowmushroom.com" class="contact-link">📧 Email</a>
+                    <a href="#" class="contact-link">🐦 Twitter</a>
+                    <a href="#" class="contact-link">💬 Discord</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Game Detail Modal -->
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <span class="modal-category" id="modalCategory"></span>
+            </div>
+            <div class="game-player">
+                <div class="iframe-container">
+                    <iframe 
+                        id="gameIframe" 
+                        title="Game embed"
+                        allow="autoplay; fullscreen"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <button class="fullscreen-btn" id="fullscreenBtn">⛶ Fullscreen</button>
+            </div>
+            <div class="modal-body">
+                <h3>Description</h3>
+                <p id="modalDescription"></p>
+                <h3>Controls</h3>
+                <p id="modalControls"></p>
+                <button class="back-btn" id="backBtn">← Back to Games</button>
+            </div>
+        </div>
     </div>
 
-    <div class="hud" aria-label="Score">
-      <div><span>Current score</span><strong id="score">0</strong></div>
-      <div><span>Best score</span><strong id="hudHighScore">0</strong></div>
-      <div><span>Difficulty</span><strong id="difficulty">1.0x</strong></div>
+    <!-- 404 Page -->
+    <div class="error-page" id="errorPage" style="display: none;">
+        <div class="error-content">
+            <h1>404</h1>
+            <p>Game not found</p>
+            <button class="btn btn-primary" onclick="location.href='#home'">Back to Home</button>
+        </div>
     </div>
 
-    <footer class="credits"><small>Canvas arcade // no dependencies // ready for GitHub Pages</small></footer>
-  </main>
-  <script src="game.js"></script>
+    <script src="games-data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
